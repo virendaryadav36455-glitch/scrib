@@ -5,7 +5,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { generateOpenApiDocument, createOpenApiExpressMiddleware } from "trpc-to-openapi";
-import { apiReference } from "@scalar/express-api-reference";
+
 
 import { serverRouter } from "@repo/trpc/server";
 import { createContext } from "./context";
@@ -100,7 +100,14 @@ app.get("/health", (_req, res) => res.json({ status: "healthy", ts: new Date().t
 
 // ── Scalar API docs ────────────────────────────────────────────────────────
 app.get("/openapi.json", (_req, res) => res.json(openApiDocument));
-app.use("/docs", apiReference({ url: "/openapi.json", theme: "default" } as any));
+app.use("/docs", async (req, res, next) => {
+  try {
+    const { apiReference } = await import("@scalar/express-api-reference");
+    return apiReference({ url: "/openapi.json", theme: "default" } as any)(req, res, next);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // ── OAuth routes (Express REST — not tRPC, because of redirects) ───────────
 app.use(oauthRouter);
