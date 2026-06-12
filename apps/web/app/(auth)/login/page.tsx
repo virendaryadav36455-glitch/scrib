@@ -498,7 +498,7 @@ export default function LoginPage() {
 
       </div>
 
-      {showGoogleModal && (
+{showGoogleModal && (
   <div
     style={{
       position: "fixed",
@@ -550,13 +550,36 @@ export default function LoginPage() {
           fontSize: "15px",
           color: "#5a4a30",
           lineHeight: 1.6,
-          marginBottom: "22px",
+          marginBottom: "16px",
         }}
       >
         The developer is not accepting Google logins right now.
         <br />
         He's probably busy fighting bugs or breaking production again.
       </p>
+
+      {/* --- Credentials Section Added Here --- */}
+      <div
+        style={{
+          fontFamily: "'Nunito', sans-serif",
+          fontSize: "14px",
+          backgroundColor: "#f4ede2",
+          border: "2px dashed #2d2416",
+          borderRadius: "8px",
+          padding: "12px",
+          marginBottom: "22px",
+          textAlign: "left",
+          color: "#2d2416",
+        }}
+      >
+        <div style={{ marginBottom: "4px" }}>
+          <strong>Email:</strong> demo@scribbleforms.dev
+        </div>
+        <div>
+          <strong>Password:</strong> Demo@1234
+        </div>
+      </div>
+      {/* ------------------------------------- */}
 
       <button
         onClick={() => setShowGoogleModal(false)}
