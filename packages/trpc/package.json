@@ -1,0 +1,59 @@
+{
+  "name": "@repo/trpc",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/client.js",
+  "exports": {
+    ".": {
+      "types": "./client/index.ts",
+      "default": "./dist/client.js"
+    },
+    "./client": {
+      "types": "./client/index.ts",
+      "default": "./dist/client.js"
+    },
+    "./server": {
+      "types": "./server/index.ts",
+      "default": "./dist/server.js"
+    },
+    "./*": {
+      "default": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@repo/constants": "workspace:*",
+    "@repo/database": "workspace:*",
+    "@repo/queues": "workspace:*",
+    "@repo/redis": "workspace:*",
+    "@repo/services": "workspace:*",
+    "@trpc/client": "^11.8.1",
+    "@trpc/server": "^11.8.1",
+    "bcryptjs": "^3.0.3",
+    "bullmq": "^5.76.10",
+    "cloudinary": "^2.10.0",
+    "drizzle-orm": "^0.45.1",
+    "ioredis": "^5.10.1",
+    "jsonwebtoken": "^9.0.3",
+    "resend": "^6.12.3",
+    "superjson": "^2.2.6",
+    "trpc-to-openapi": "^3.1.0",
+    "uuid": "^14.0.0",
+    "zod": "^4.3.5",
+    "tsup": "^8.5.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/express": "^5.0.6",
+    "@vitest/coverage-v8": "^4.1.7",
+    "dotenv-cli": "^11.0.0",
+    "express": "^5.2.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.7"
+  }
+}

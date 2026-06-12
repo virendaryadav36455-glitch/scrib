@@ -1,0 +1,49 @@
+// packages/trpc/server/errors/index.ts
+import { TRPCError } from "@trpc/server";
+
+export const ERROR_CODES = {
+  INVALID_CREDENTIALS:   "INVALID_CREDENTIALS",
+  EMAIL_TAKEN:           "EMAIL_TAKEN",
+  SESSION_EXPIRED:       "SESSION_EXPIRED",
+  RESET_TOKEN_INVALID:   "RESET_TOKEN_INVALID",
+  RESET_TOKEN_EXPIRED:   "RESET_TOKEN_EXPIRED",
+  FORM_NOT_FOUND:        "FORM_NOT_FOUND",
+  FORM_NOT_PUBLISHED:    "FORM_NOT_PUBLISHED",
+  FORM_VERSION_OUTDATED: "FORM_VERSION_OUTDATED",
+  FORM_EXPIRED:          "FORM_EXPIRED",
+  FORM_RESPONSE_LIMIT:   "FORM_RESPONSE_LIMIT",
+  FORM_EMPTY:            "FORM_EMPTY",
+  FORM_SLUG_TAKEN:       "FORM_SLUG_TAKEN",
+  FIELD_NOT_FOUND:       "FIELD_NOT_FOUND",
+  FIELD_INVALID_TYPE:    "FIELD_INVALID_TYPE",
+  VALIDATION_FAILED:     "VALIDATION_FAILED",
+  DUPLICATE_SUBMISSION:  "DUPLICATE_SUBMISSION",
+  PLAN_LIMIT_FORMS:      "PLAN_LIMIT_FORMS",
+  PLAN_LIMIT_RESPONSES:  "PLAN_LIMIT_RESPONSES",
+  PLAN_FEATURE_LOCKED:   "PLAN_FEATURE_LOCKED",
+  NOT_FOUND:             "NOT_FOUND",
+  FORBIDDEN:             "FORBIDDEN",
+  INTERNAL:              "INTERNAL",
+  RATE_LIMITED:          "RATE_LIMITED",
+} as const;
+
+type HttpStatus =
+  | "BAD_REQUEST"
+  | "UNAUTHORIZED"
+  | "FORBIDDEN"
+  | "NOT_FOUND"
+  | "CONFLICT"
+  | "TOO_MANY_REQUESTS"
+  | "INTERNAL_SERVER_ERROR";
+
+export function domainError(
+  code: keyof typeof ERROR_CODES,
+  message: string,
+  httpStatus: HttpStatus = "BAD_REQUEST"
+): TRPCError {
+  return new TRPCError({
+    code: httpStatus,
+    message,
+    cause: { domainCode: ERROR_CODES[code] },
+  });
+}

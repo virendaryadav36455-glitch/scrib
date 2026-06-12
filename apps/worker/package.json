@@ -1,0 +1,32 @@
+{
+  "name": "@repo/worker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "dotenv -- tsx watch ./src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsup src/index.ts --out-dir dist"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.15.3",
+    "dotenv-cli": "^11.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@repo/database": "workspace:*",
+    "@repo/queues": "workspace:*",
+    "@repo/redis": "workspace:*",
+    "@repo/logger": "workspace:*",
+    "tsup": "^8.5.1",
+    "bullmq": "^5.51.1",
+    "ioredis": "^5.4.2",
+    "resend": "^6.12.3",
+    "cloudinary": "^2.10.0",
+    "dotenv": "^17.2.3",
+    "zod": "^4.3.5",
+    "@repo/constants": "workspace:*",
+    "drizzle-orm": "^0.45.1"
+  }
+}

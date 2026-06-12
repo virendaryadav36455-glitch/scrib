@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --paper-base: #F5F0E8;
+  --paper-warm: #EDE8DC;
+  --paper-card: #FFFFFF;
+  --paper-muted: #F0EBE0;
+  --ink-1: #1a1208;
+  --ink-2: #3d3020;
+  --ink-3: #6b5d44;
+  --ink-4: rgba(26,18,8,0.12);
+  --yellow: #F5C842;
+  --pink: #F2A0B8;
+  --green: #8DC97A;
+  --blue: #7EC8E3;
+  --purple: #B8A0E8;
+  --peach: #F5A88A;
+  --mint: #A8E8D4;
+  --lavender: #D4C8F0;
+  --ok: #2d7d46;
+  --fail: #c0392b;
+  --warn: #8B5E00;
+  --b: rgba(26,18,8,0.18);
+  --sh-sm: 3px 3px 0 rgba(26,18,8,0.08);
+  --sh-md: 4px 4px 0 rgba(26,18,8,0.10);
+  --sh-lg: 6px 6px 0 rgba(26,18,8,0.13);
+  --sh-hover: 5px 5px 0 rgba(26,18,8,0.15);
+  --font-display: 'Caveat', cursive;
+  --font-body: 'Patrick Hand', cursive;
+  --radius: 0.5rem;
+  --background: #F5F0E8;
+  --foreground: #1a1208;
+  --card: #FFFFFF;
+  --card-foreground: #1a1208;
+  --popover: #FFFFFF;
+  --popover-foreground: #1a1208;
+  --primary: #B8A0E8;
+  --primary-foreground: #1a1208;
+  --secondary: #EDE8DC;
+  --secondary-foreground: #1a1208;
+  --muted: #F0EBE0;
+  --muted-foreground: #6b5d44;
+  --accent: #F5C842;
+  --accent-foreground: #1a1208;
+  --destructive: #c0392b;
+  --border: rgba(26,18,8,0.18);
+  --input: rgba(26,18,8,0.18);
+  --ring: #B8A0E8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--paper-base);
+  background-image: radial-gradient(circle, rgba(26,18,8,0.055) 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: var(--font-body);
+  color: var(--ink-1);
+  min-height: 100vh;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: rgba(26,18,8,0.2); border-radius: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Custom animations */
+@keyframes wiggle {
+  0%,100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes pencilDraw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes fadeSlideUp {
+  from { opacity:0; transform: translateY(12px); }
+  to { opacity:1; transform: translateY(0); }
+}
+.animate-wiggle { animation: wiggle 2s ease-in-out infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-fade-slide-up { animation: fadeSlideUp 0.4s ease forwards; }
+
+/* Page dot grid override */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(26,18,8,0.055) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
